@@ -59,31 +59,78 @@ public byte[] decifra(byte[] texto){
 ```
 
 
+# Classe `SubstituicaoVigenere`
 
-Adição do arquivo **Compactador**:
+A classe `SubstituicaoVigenere` implementa a cifra de Vigenère para operações de cifragem e decifragem de texto.
 
-1. Criamos a classe Compactador onde fazemos as rotinas de compressão dos dados em arquivos de BackUp e de descompressão destes dados de volta para a pasta dados.
-2. Criamos a função `compacta`, que percorre o diretório de dados lendo todos os arquivos e armazenando no arquivo de BackUp o nome do arquivo em bytes, indicador de tamanho dos dados comprimidos e o arquivo comprimido.
-3. Dentro da função `compacta` o método `codifica` do LZW é chamado uma vez para arquivo no diretório de dados.
-4. Criamos a função `descompacta`, que recebe a versão do BackUp a ser recuperado. A função lê o nome do arquivo, o tamanho dos dados compactados e o prório array de bytes, e cria na pasta de dados o arquivo com o nome recuperado e escreve no mesmo os dados após serem descompactados.
-5. Dentro da função `descompacta` o método `decodifica` do LZW é chamado uma vez para arquivo salvo no BackUp.
+## Atributos
 
-**Observações**:
-- O sistema guarda apenas um BackUp por dia
+- `private static byte[] Keyword`: Chave utilizada na cifra de Vigenère. O valor padrão é `"ARTHUR"`.
 
-**Nossa experiência fazendo**: Conseguimos fazer o trabalho implementando tudo que foi pedido, não foi uma atividade complexa de se entender o problema e nem tão difícil de se implementar. Eu (Gustavo Garcia) tive um problema para conseguir fazer o método de descompressão corretamente, mas depois de algum tempo consegui entender a implementação.
+## Construtores
+
+### `SubstituicaoVigenere()`
+Construtor padrão que inicializa a chave padrão.
+
+### `SubstituicaoVigenere(String chave)`
+Construtor que inicializa a chave com o valor fornecido.
+
+## Métodos
+
+### `byte[] generateKey(byte[] str, byte[] key)`
+Gera uma chave repetida para igualar o tamanho do texto a ser cifrado.
+
+### `byte[] cipherText(byte[] str, byte[] key)`
+Cifra o texto utilizando a chave fornecida.
+
+### `byte[] originalText(byte[] cipher_text, byte[] key)`
+Decifra o texto cifrado utilizando a chave fornecida.
+
+### `byte[] cifra(byte[] Str)`
+Cifra o texto utilizando a cifra de Vigenère com a chave definida.
+
+### `byte[] decifra(byte[] Str)`
+Decifra o texto utilizando a cifra de Vigenère com a chave definida.
+
+---
+
+# Classe `TransposicaoRailFence`
+
+A classe `TransposicaoRailFence` implementa a cifra Rail Fence para operações de cifragem e decifragem de texto.
+
+## Atributos
+
+- `private static byte[] Keyword`: Chave utilizada na cifra Rail Fence. O valor padrão é `"CHAVE"`.
+- `private int key`: Número de "trilhos" usados na cifra Rail Fence.
+
+## Construtores
+
+### `TransposicaoRailFence()`
+Construtor padrão que inicializa a chave padrão.
+
+### `TransposicaoRailFence(String chave)`
+Construtor que inicializa a chave com o valor fornecido.
+
+## Métodos
+
+### `private List<Integer> jaId(int tam)`
+Gera a sequência de índices para a cifra Rail Fence.
+
+### `byte[] cifra(byte[] texto)`
+Cifra o texto utilizando a cifra Rail Fence.
+
+### `byte[] decifra(byte[] texto)`
+Decifra o texto cifrado utilizando a cifra Rail Fence.
+
+**Nossa experiência fazendo**: Conseguimos fazer o trabalho implementando tudo que foi pedido, não foi uma atividade complexa de se entender o problema e nem tão difícil de se implementar. Levou algum tempo mas deu certo.
 
 **Questionário**
-* Foi feita uma rotina de compactação utilizando o algorítimo do LZW para fazer o backup dos arquivos
+*Todas as classes são cifradas por dois metodos que usam a mesma chave, que pode ser mudada na classe CifragemDecifragem.
 
-* Foi feita uma rotina de descompactação utilizando o algorítimo do LZW para recuperar o backup dos arquivos
+*Uma das operações de cifragem é baseada na substituição e a outra na transposição.
 
-* O usuário pode escolher qual versão recuperar
+*O trabalho está funcionando corretamente.
 
-* Conseguimos uma taxa de aproximadamente 69% de compressão (0,69801145938658577687900235928547)
+*O trabalho está completo.
 
-* O trabalho funciona corretamente 
-
-* O trabalho está completo 
-
-* O trabalho não é cópia 
+*O trabalho é original e não a cópia de um trabalho de um colega.
